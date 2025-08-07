@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 let firstName = "john";
 let lastName = "doe";
 function vietHoaChuCaiDau(chuoi) {

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 let cau = "hello world";
 let ketQua = "";
 for (let i = 0; i < cau.length; i++) {

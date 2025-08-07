@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function cong(a, b) {
     const soA = a * 1;
     const soB = b * 1;
