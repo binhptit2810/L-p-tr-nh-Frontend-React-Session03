@@ -1,51 +1,65 @@
-abstract class Item {
+class Book {
     id: number;
     title: string;
-    status: string;
-    constructor(id: number, title: string, status: string) {
-        this.id = id;
-        this.title = title;
-        this.status = status;
-    }
-    abstract getInfo(): void;
-}
-class Book extends Item {
     author: string;
     stock: number;
-    constructor(id: number, title: string, author: string, stock: number, status: string){
-        super(id, title, status)
-        this.author = author
+    status: string;
+    constructor(id: number, title: string, author: string, stock: number, status: string) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
         this.stock = stock;
-    }
-    getInfo(): void {
-        console.log(`Book: ${this.title} - Author: ${this.author} - Stock: ${this.stock} - Status: ${this.status}`);
+        this.status = status;
     }
 }
-abstract class Person {
+class Member {
     id: number;
     name: string;
     contact: string;
-    constructor(id: number, name: string, contact: string) {
+    lendedBooks: LendedBook[];
+    status: string;
+    constructor(id: number, name: string, contact: string, status: string) {
         this.id = id;
         this.name = name;
         this.contact = contact;
-    }
-    abstract showProfile(): void;
-}
-
-class Member extends Person {
-    lendedBooks: Book[];
-    status: string;
-    constructor(id: number, name: string, contact: string, status: string) {
-        super(id, name, contact);
         this.lendedBooks = [];
         this.status = status;
     }
-    showProfile(): void {
-        console.log(`Member: ${this.name} - Status: ${this.status} - Contact: ${this.contact}`);
+}
+class LendedBook {
+    memberId: number;
+    bookId: number;
+    dueDate: Date;
+
+    constructor(memberId: number, bookId: number, dueDate: Date) {
+        this.memberId = memberId;
+        this.bookId = bookId;
+        this.dueDate = dueDate;
     }
 }
-let book1 = new Book(1, "dế mèn", "tô hoài", 3, "Available");
-let member1 = new Member(101, "Bình", "0123456789", "Active");
-book1.getInfo();
-member1.showProfile();
+class Library {
+    books: Book[];
+    members: Member[];
+    constructor() {
+        this.books = [];
+        this.members = [];
+    }
+    addBook(book: Book): void {
+        this.books.push(book);
+        console.log(`Da them sach: ${book.title}`);
+    }
+    showBooks(): void {
+        console.log("Danh sach sach trong thu vien:");
+        this.books.forEach(b => {
+            console.log(`ID: ${b.id} | Tieu de: ${b.title} | Tac gia: ${b.author} | So luong: ${b.stock} | Tinh trang: ${b.status}`);
+        });
+    }
+}
+let myLibrary = new Library();
+let book1 = new Book(1, "conan", "Nguyen Van A", 5, "Co san");
+let book2 = new Book(2, "dragon ball", "akira toriyama", 3, "Co san");
+let book3 = new Book(3, "dế mèn", "tô hoài", 0, "Het hang");
+myLibrary.addBook(book1);
+myLibrary.addBook(book2);
+myLibrary.addBook(book3);
+myLibrary.showBooks();
